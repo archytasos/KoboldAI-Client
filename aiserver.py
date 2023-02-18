@@ -2551,7 +2551,7 @@ def load_model(use_gpu=True, gpu_layers=None, disk_layers=None, initial_load=Fal
                                 except Exception as e:
                                     tokenizer = GPT2Tokenizer.from_pretrained("gpt2", revision=args.revision, cache_dir="cache")
                         try:
-                            model     = AutoModelForCausalLM.from_pretrained(vars.custmodpth, revision=args.revision, load_in_8bit=True, device_map ="auto", cache_dir="cache", **lowmem)
+                            model     = AutoModelForCausalLM.from_pretrained(vars.custmodpth, revision=args.revision, load_in_8bit=True, load_in_8bit_threshold=0.8, device_map ="auto", cache_dir="cache", **lowmem)
                         except Exception as e:
                             if("out of memory" in traceback.format_exc().lower()):
                                 raise RuntimeError("One of your GPUs ran out of memory when KoboldAI tried to load your model.")
@@ -2568,7 +2568,7 @@ def load_model(use_gpu=True, gpu_layers=None, disk_layers=None, initial_load=Fal
                                 except Exception as e:
                                     tokenizer = GPT2Tokenizer.from_pretrained("gpt2", revision=args.revision, cache_dir="cache")
                         try:
-                            model     = AutoModelForCausalLM.from_pretrained("models/{}".format(vars.model.replace('/', '_')), load_in_8bit=True, device_map ="auto", revision=args.revision, cache_dir="cache", **lowmem)
+                            model     = AutoModelForCausalLM.from_pretrained("models/{}".format(vars.model.replace('/', '_')), load_in_8bit=True, load_in_8bit_threshold=0.8, device_map ="auto", revision=args.revision, cache_dir="cache", **lowmem)
                         except Exception as e:
                             if("out of memory" in traceback.format_exc().lower()):
                                 raise RuntimeError("One of your GPUs ran out of memory when KoboldAI tried to load your model.")
