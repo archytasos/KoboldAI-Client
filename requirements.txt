@@ -20,4 +20,5 @@ apispec-webframeworks
 loguru
 termcolor
 safetensors
+bitsandbytes==0.37.0
 git+https://github.com/VE-FORBRYDERNE/mkultra
